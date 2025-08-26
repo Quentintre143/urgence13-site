@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urgence13 RP - FIVEM</title>
+  <style>
+    /* --- Styles globaux --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background: url('marseille.jpg') no-repeat center center fixed; background-size: cover; color: white; line-height: 1.6; }
+    header { background: rgba(0,0,0,0.6); padding: 30px 20px; text-align: center; animation: fadeIn 2s ease-in-out; }
+    header img { height: 120px; animation: float 4s ease-in-out infinite; }
+    header h1 { font-size: 2.5rem; color: #ff6600; }
+    header p { font-size: 1.2rem; opacity: 0.9; }
+    nav { display: flex; justify-content: center; background: rgba(0,0,0,0.8); padding: 15px; position: sticky; top: 0; z-index: 1000; }
+    nav a { margin: 0 15px; text-decoration: none; color: white; font-weight: bold; transition: 0.3s; }
+    nav a:hover { color: #ff6600; transform: scale(1.1); }
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; background: rgba(0,0,0,0.7); margin-top: 40px; border-radius: 12px; animation: fadeUp 1.5s ease-in-out; }
+    h2 { color: #ff6600; margin-bottom: 20px; text-align: center; }
+    ul { list-style: none; padding: 0; }
+    ul li { background: rgba(255,102,0,0.2); margin: 10px 0; padding: 10px; border-radius: 8px; }
+    footer { background: rgba(0,0,0,0.9); text-align: center; padding: 20px; margin-top: 50px; font-size: 0.9rem; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Urgence13 Logo">
+    <h1>Bienvenue sur Urgence13 RP</h1>
+    <p>Serveur FIVEM RP - Marseille</p>
+  </header>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#reglement">Règlement</a>
+    <a href="#staff">Staff</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <section id="accueil">
+    <h2>Accueil</h2>
+    <p>Bienvenue sur <strong>Urgence13</strong>, le serveur RP basé à Marseille. Viens incarner un citoyen, un policier, un médecin, ou même un entrepreneur ! L’immersion est au cœur de notre projet.</p>
+  </section>
+  <section id="reglement">
+    <h2>Règlement</h2>
+    <ul>
+      <li>Respectez le RP en toute circonstance.</li>
+      <li>Pas de cheat, mod menu ou glitch.</li>
+      <li>Respectez le staff et les autres joueurs.</li>
+      <li>Pas de propos racistes, sexistes ou discriminatoires.</li>
+    </ul>
+  </section>
+  <section id="staff">
+    <h2>Staff</h2>
+    <p>Notre équipe :</p>
+    <ul>
+      <li>👑 Fondateur : <strong>TonPseudo</strong></li>
+      <li>⚡ Admin : <strong>Nom Admin</strong></li>
+      <li>🛡️ Modérateur : <strong>Nom Modo</strong></li>
+    </ul>
+  </section>
+  <section id="faq">
+    <h2>FAQ</h2>
+    <p><strong>Comment rejoindre ?</strong> Télécharge FIVEM et connecte-toi via notre IP.</p>
+    <p><strong>Besoin d’aide ?</strong> Contacte un staff sur Discord.</p>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Discord : <a href="https://discord.gg/" target="_blank" style="color:#ff6600;">Lien Discord</a></p>
+    <p>Email : urgence13rp@gmail.com</p>
+  </section>
+  <footer>
+    <p>&copy; 2025 Urgence13 RP - Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
