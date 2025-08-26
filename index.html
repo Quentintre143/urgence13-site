@@ -180,6 +180,70 @@ a <!DOCTYPE html>
     <h2>Contact</h2>
     <p>Discord : <a href="https://discord.gg/v6kTQzqYsR/" target="_blank" style="color:#ff6600;">Lien Discord</a></p>
   </section>
+  <section id="media">
+  <h2>Média</h2>
+  <p>Découvrez les moments forts de notre serveur Urgence13 RP :</p>
+
+  <div class="media-gallery">
+    <img src="media1.jpg" alt="Capture d'écran 1">
+    <img src="media2.jpg" alt="Capture d'écran 2">
+    <img src="media3.jpg" alt="Capture d'écran 3">
+    <!-- Ajoute autant d'images que nécessaire -->
+  </div>
+
+  <div class="media-video">
+    <h3>Notre vidéo de présentation</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" 
+        title="Présentation Urgence13 RP" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+  </div>
+</section>
+
+<style>
+  #media {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    color: white;
+  }
+  #media h2 {
+    color: #ff6600;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #media p {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .media-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  .media-gallery img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+  .media-gallery img:hover {
+    transform: scale(1.05);
+  }
+  .media-video h3 {
+    color: #ff6600;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .media-video iframe {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+</style>
   <footer>
     <p>&copy; 2025 Urgence13 RP - Tous droits réservés.</p>
   </footer>
