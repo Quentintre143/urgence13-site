@@ -180,15 +180,18 @@ a <!DOCTYPE html>
     <h2>Contact</h2>
     <p>Discord : <a href="https://discord.gg/v6kTQzqYsR/" target="_blank" style="color:#ff6600;">Lien Discord</a></p>
   </section>
-  <section id="media">
+<section id="media">
   <h2>Média</h2>
   <p>Découvrez les moments forts de notre serveur Urgence13 RP :</p>
 
-  <div class="media-gallery">
-    <img src="media1.jpg" alt="Capture d'écran 1">
-    <img src="media2.jpg" alt="Capture d'écran 2">
-    <img src="media3.jpg" alt="Capture d'écran 3">
-    <!-- Ajoute autant d'images que nécessaire -->
+  <div class="carousel">
+    <div class="carousel-track">
+      <img src="media1.jpg" alt="Capture d'écran 1">
+      <img src="media2.jpg" alt="Capture d'écran 2">
+      <img src="media3.jpg" alt="Capture d'écran 3">
+      <img src="media4.jpg" alt="Capture d'écran 4">
+      <!-- Ajoute d'autres images si nécessaire -->
+    </div>
   </div>
 
   <div class="media-video">
@@ -218,20 +221,33 @@ a <!DOCTYPE html>
     text-align: center;
     margin-bottom: 30px;
   }
-  .media-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+
+  /* Carousel */
+  .carousel {
+    overflow: hidden;
+    border-radius: 12px;
     margin-bottom: 40px;
   }
-  .media-gallery img {
-    width: 100%;
+  .carousel-track {
+    display: flex;
+    animation: scroll 20s linear infinite;
+  }
+  .carousel-track img {
+    width: 300px;
+    margin-right: 15px;
     border-radius: 10px;
+    flex-shrink: 0;
     transition: transform 0.3s;
   }
-  .media-gallery img:hover {
+  .carousel-track img:hover {
     transform: scale(1.05);
   }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
   .media-video h3 {
     color: #ff6600;
     text-align: center;
