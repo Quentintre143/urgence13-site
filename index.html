@@ -1,275 +1,79 @@
-a <!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urgence13 RP - FIVEM</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Champagne Simulation — Accueil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   <style>
-    /* --- Styles globaux --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Arial', sans-serif; background: url('marseille.jpg') no-repeat center center fixed; background-size: cover; color: white; line-height: 1.6; }
-    header { background: rgba(0,0,0,0.6); padding: 30px 20px; text-align: center; animation: fadeIn 2s ease-in-out; }
-    header img { height: 120px; animation: float 4s ease-in-out infinite; }
-    header h1 { font-size: 2.5rem; color: #ff6600; }
-    header p { font-size: 1.2rem; opacity: 0.9; }
-    nav { display: flex; justify-content: center; background: rgba(0,0,0,0.8); padding: 15px; position: sticky; top: 0; z-index: 1000; }
-    nav a { margin: 0 15px; text-decoration: none; color: white; font-weight: bold; transition: 0.3s; }
-    nav a:hover { color: #ff6600; transform: scale(1.1); }
-    section { padding: 60px 20px; max-width: 1000px; margin: auto; background: rgba(0,0,0,0.7); margin-top: 40px; border-radius: 12px; animation: fadeUp 1.5s ease-in-out; }
-    h2 { color: #ff6600; margin-bottom: 20px; text-align: center; }
-    ul { list-style: none; padding: 0; }
-    ul li { background: rgba(255,102,0,0.2); margin: 10px 0; padding: 10px; border-radius: 8px; }
-    footer { background: rgba(0,0,0,0.9); text-align: center; padding: 20px; margin-top: 50px; font-size: 0.9rem; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+    :root{
+      --maroon:#3e0f16;
+      --maroon-deep:#2f0a0e;
+      --white: #fff;
+      --muted: rgba(255,255,255,0.75);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#111}
+    .nav{background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.0));backdrop-filter: blur(2px);height:72px;display:flex;align-items:center;padding:0 28px;color:var(--white)}
+    .nav .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .nav img{width:40px;height:40px;border-radius:50%}
+    .nav .links{margin-left:auto;display:flex;gap:20px;align-items:center}
+    .nav a{color:rgba(255,255,255,0.92);text-decoration:none;font-weight:600}
+
+    .hero{position:relative;height:92vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background-image:url('/mnt/data/40484ea0-b71c-4fba-9a6e-bb86481ea9aa.png');background-size:cover;background-position:center;filter:brightness(0.45) saturate(0.8);transform:scale(1.02)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(62,15,22,0.65), rgba(28,8,12,0.85))}
+
+    .container{position:relative;z-index:2;max-width:980px;padding:48px 20px}
+    h1{font-size:72px;margin:0 0 8px 0;font-weight:800;letter-spacing:-1px}
+    h2{font-size:46px;margin:0 0 18px 0;font-weight:900}
+    p.lead{color:var(--muted);font-size:18px;line-height:1.6;margin:20px 0 28px}
+
+    .cta{display:flex;gap:12px;justify-content:center}
+    .btn{padding:12px 18px;border-radius:8px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--maroon);color:var(--white);box-shadow:0 6px 18px rgba(62,15,22,0.45)}
+    .btn-ghost{background:rgba(255,255,255,0.95);color:#222}
+
+    footer{padding:28px;text-align:center;color:rgba(255,255,255,0.6);font-size:14px}
+
+    @media (max-width:900px){h1{font-size:44px}h2{font-size:30px}}
+    @media (max-width:520px){.nav{padding:0 12px}.nav .links{display:none}h1{font-size:34px}}
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.jpg" alt="Urgence13 Logo">
-    <h1>Bienvenue sur Urgence13 RP</h1>
-    <p>Serveur FIVEM RP - Marseille</p>
-  </header>
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#reglement">Règlement</a>
-    <a href="#staff">Staff</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <section id="accueil">
-    <h2>Accueil</h2>
-    <p>Bienvenue sur <strong>Urgence13</strong>, le serveur RP basé à Marseille et sa provence . Viens incarner un citoyen, un policier, un médecin, ou même un entrepreneur ! L’immersion est au cœur de notre projet.</p>
-  </section>
-<section id="reglement">
-  <h2>Règlement & Informations</h2>
-
-  <h3>Notre serveur met l’accent sur :</h3>
-  <ul>
-    <li>✅ Réalisme, sans être trop hardcore</li>
-    <li>🤝 Une communauté bienveillante et motivée</li>
-    <li>🛠️ Gameplay riche et moddé FR, avec scripts faits maison</li>
-    <li>💬 Vraie coordination entre services (police, EMS, pompiers, justice)</li>
-  </ul>
-  <p>Rejoins-nous et écris ton histoire dans le 13.</p>
-
-  <h3>🚫 Règles générales – Zéro tolérance</h3>
-  <ul>
-    <li>❌ Propos discriminatoires (race, religion, sexe, orientation, âge, handicap)</li>
-    <li>❌ Incitation à la haine ou au harcèlement (physique, moral ou sexuel)</li>
-    <li>❌ Menaces envers un joueur ou la communauté</li>
-    <li>❌ Contenu inapproprié (gore, pornographie, virus…)</li>
-    <li>❌ Cheats, mod menus ou outils non autorisés</li>
-    <li>❌ Exploitation de failles (FiveM, GTA ou ressources du serveur)</li>
-    <li>❌ Publicité non autorisée</li>
-    <li>❌ Usurpation d’identité ou de rôle</li>
-    <li>❌ Contournement de ban</li>
-  </ul>
-
-  <h3>📌 Règles de base</h3>
-  <ul>
-    <li>Respect de la vie : pas d’agression ou de meurtre sans raison valable.</li>
-    <li>Actions réalistes : interdites si irréalistes (ex : ouvrir une porte menotté).</li>
-    <li>Réactions aux menaces : avoir peur face à une arme, pas de fuite immédiate.</li>
-    <li>Sécurité personnelle : ne pas se mettre en danger sans raison.</li>
-    <li>Respect de la ville : pas d’actes illégaux visibles dans des lieux fréquentés.</li>
-    <li>Informations roleplay : pas d’utilisation hors-jeu d’infos IG.</li>
-    <li>Rester en personnage : parler hors personnage uniquement dans le chat HRP ou avec admins.</li>
-    <li>Gestion des scènes : pas d’annulation de scène.</li>
-    <li>Téléportations limitées : uniquement hors scènes RP.</li>
-    <li>Accessibilité des lieux : tout endroit caché doit être accessible à tous.</li>
-    <li>Actes à connotation sexuelle : autorisés si non abusifs ni gênants.</li>
-  </ul>
-
-  <h3>ACTIONS ILLÉGALES 🗡️</h3>
-  <ul>
-    <li>🔍 Validation : attentats supervisés par un modérateur.</li>
-    <li>🚫 Pas de tirs immédiats après libération des otages.</li>
-    <li>🎭 Simulation d’otage : intervention possible si détection par la police.</li>
-    <li>🤝 Négociations & assauts : police n’intervient que si sécurité des otages garantie.</li>
-  </ul>
-
-  <h3>Règles PVE & PVP</h3>
-  <ul>
-    <li>PVE : jouer contre png, pas soumis aux restrictions de service.</li>
-    <li>PVP : interactions RP entre joueurs, respect des règles RP.</li>
-    <li>Pas de forçage d’action RP.</li>
-    <li>Pas de provocation envers la police.</li>
-    <li>Respect des zones officielles et règles de RP.</li>
-  </ul>
-
-  <h3>Services publics 👮‍♂️</h3>
-  <ul>
-    <li>Respect du département (tenue, véhicule, zone d’intervention).</li>
-    <li>Civils : pas d’utilisation d’équipements officiels.</li>
-    <li>Policiers : pas d’intervention seul dans quartiers chauds.</li>
-    <li>Respect des grades et directives des officiers supérieurs.</li>
-    <li>Pas de RP corrompu ou ripoux.</li>
-  </ul>
-
-  <h3>Gangs & Organisations ⚔️</h3>
-  <ul>
-    <li>Respect de la cohérence du groupe.</li>
-    <li>Validation nécessaire via ticket Discord.</li>
-    <li>Gestion libre des recrutements pour groupes validés.</li>
-    <li>Pas d’usurpation de gang ou organisation.</li>
-  </ul>
-
-  <h3>Douleur, blessures et mort RP ⚠️</h3>
-  <ul>
-    <li>🤕 Simulation de la douleur et blessures.</li>
-    <li>🚫 Restrictions après taser ou mort RP.</li>
-    <li>Réanimation et nouveaux personnages doivent respecter les règles RP.</li>
-  </ul>
-
-  <h3>Armes et explosifs</h3>
-  <ul>
-    <li>⚠️ Armes en dernier recours.</li>
-    <li>🚫 Armes lourdes illégales réservées aux criminels autorisés.</li>
-    <li>🎯 Fusil de précision : un seul par camp lors d’une action.</li>
-    <li>💣 Pas de prétention de possession de bombe pour véhicules.</li>
-  </ul>
-
-  <h3>Donations & Scripts</h3>
-  <ul>
-    <li>Non remboursable en cas de bannissement.</li>
-    <li>Achats boutique remboursables uniquement en cas d’erreur dans 24h.</li>
-  </ul>
-
-  <h3>Véhicules 🚗</h3>
-  <ul>
-    <li>🚦 Conduite cohérente et réaliste.</li>
-    <li>🔫 Tir interdit pour conducteur.</li>
-    <li>👮 Police : tir seulement en dernier recours.</li>
-    <li>🚶 Civils : tir en passager seulement après avoir subi des tirs.</li>
-    <li>🛡️ Véhicules blindés réservés aux situations à haut risque.</li>
-  </ul>
-</section>
-  <section id="staff">
-    <h2>Staff</h2>
-    <p>Notre équipe :</p>
-    <ul>
-      <li>👑 Fondateur : <strong>Quentin</strong></li>
-      <li>👑 co-Fondateur : <strong>ALEX</strong></li>
-      <li>⚡ Admin : <strong>JEREMY/MAEL/LUCAS</strong></li>
-    </ul>
-  </section>
-  <section id="faq">
-    <h2>FAQ</h2>
-    <p><strong>Comment rejoindre ?</strong> Télécharge FIVEM et connecte-toi via notre IP.</p>
-    <section id="join">
-  <h2>Rejoindre notre serveur</h2>
-  <p>Pour rejoindre Urgence13 RP sur FiveM, cliquez sur le bouton ci-dessous :</p>
-  <a href="https://cfx.re/join/y5bpvm" target="_blank" style="
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #ff6600;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: 0.3s;
-  " onmouseover="this.style.backgroundColor='#ff8533'" onmouseout="this.style.backgroundColor='#ff6600'">
-    Rejoindre le serveur
-  </a>
-</section>
-    <p><strong>Besoin d’aide ?</strong> Contacte un staff sur Discord.</p>
-  </section>
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Discord : <a href=https://discord.gg/v6kTQzqYsR target="_blank" style="color:#ff6600;">Lien Discord</a></p>
-  </section>
-<section id="media">
-  <h2>Média</h2>
-  <p>Découvrez les moments forts de notre serveur Urgence13 RP :</p>
-
-  <div class="carousel">
-    <div class="carousel-track">
-      <img src="media1.png" alt="Capture d'écran 1">
-      <img src="media2.png" alt="Capture d'écran 2">
-      <img src="media3.png" alt="Capture d'écran 3">
-      <img src="media4.png" alt="Capture d'écran 4">
-      <img src="media5.png" alt="Capture d'écran 5">
-      <img src="media6.png" alt="Capture d'écran 6">
-      <img src="media7.png" alt="Capture d'écran 7">
-      <img src="media8.png" alt="Capture d'écran 8">
-      <img src="media9.png" alt="Capture d'écran 9">
-      <img src="media10.png" alt="Capture d'écran 10">
-      <img src="media11.png" alt="Capture d'écran 11">
-      <img src="media12.png" alt="Capture d'écran 12">
-      <!-- Ajoute d'autres images si nécessaire -->
+  <header class="nav">
+    <div class="brand">
+      <img src="/mnt/data/40484ea0-b71c-4fba-9a6e-bb86481ea9aa.png" alt="logo" />
+      <div>Champagne Simulation</div>
     </div>
-  </div>
+    <nav class="links">
+      <a href="#">Accueil</a>
+      <a href="#">Règlement</a>
+      <a href="#">FAQ</a>
+      <a href="#">Actualités</a>
+      <a href="#">L'équipe</a>
+      <a href="#">Partenaires</a>
+    </nav>
+  </header>
 
-  <div class="media-video">
-    <h3>Notre vidéo de présentation</h3>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/fvpgy9dcRXg?si=nOJBog3juSoH91YA?" 
-        title="Présentation Urgence13 RP" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-  </div>
-</section>
+  <main class="hero">
+    <div class="hero-bg"></div>
+    <div class="overlay"></div>
+    <div class="container">
+      <h1>Bienvenue sur</h1>
+      <h2>Champagne Simulation</h2>
+      <p class="lead">Plongez dans le département de la Marne (51) pour une simulation réaliste des services de secours : opérateurs, pompiers, SAMU, forces de l'ordre.</p>
+      <div class="cta">
+        <button class="btn btn-primary" onclick="alert('Découvrir le serveur')">Découvrir le serveur</button>
+        <button class="btn btn-ghost" onclick="window.open('https://discord.com','_blank')">Discord</button>
+      </div>
+    </div>
+  </main>
 
-<style>
-  #media {
-    max-width: 1000px;
-    margin: 60px auto;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 12px;
-    color: white;
-  }
-  #media h2 {
-    color: #ff6600;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  #media p {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  /* Carousel */
-  .carousel {
-    overflow: hidden;
-    border-radius: 12px;
-    margin-bottom: 40px;
-  }
-  .carousel-track {
-    display: flex;
-    animation: scroll 20s linear infinite;
-  }
-  .carousel-track img {
-    width: 300px;
-    margin-right: 15px;
-    border-radius: 10px;
-    flex-shrink: 0;
-    transition: transform 0.3s;
-  }
-  .carousel-track img:hover {
-    transform: scale(1.05);
-  }
-
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
-
-  .media-video h3 {
-    color: #ff6600;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .media-video iframe {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    border-radius: 12px;
-  }
-</style>
   <footer>
-    <p>&copy; 2025 Urgence13 RP - Tous droits réservés.</p>
+    © <span id="year"></span> Champagne Simulation — Tous droits réservés
   </footer>
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
 </body>
 </html>
