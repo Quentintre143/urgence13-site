@@ -1,79 +1,1281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>URGENCE 13 RP — Accueil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --maroon:#3e0f16;
-      --maroon-deep:#2f0a0e;
-      --white: #fff;
-      --muted: rgba(255,255,255,0.75);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#111}
-    .nav{background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.0));backdrop-filter: blur(2px);height:72px;display:flex;align-items:center;padding:0 28px;color:var(--white)}
-    .nav .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-    .nav img{width:40px;height:40px;border-radius:50%}
-    .nav .links{margin-left:auto;display:flex;gap:20px;align-items:center}
-    .nav a{color:rgba(255,255,255,0.92);text-decoration:none;font-weight:600}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URGENCE 13 RP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .hero{position:relative;height:92vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);overflow:hidden}
-    .hero::before{content:"";position:absolute;inset:0;background-image:url('40484ea0-b71c-4fba-9a6e-bb86481ea9aa.png');background-size:cover;background-position:center;filter:brightness(0.45) saturate(0.8);transform:scale(1.02)}
-    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(62,15,22,0.65), rgba(28,8,12,0.85))}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            background: #000;
+        }
 
-    .container{position:relative;z-index:2;max-width:980px;padding:48px 20px}
-    h1{font-size:72px;margin:0 0 8px 0;font-weight:800;letter-spacing:-1px}
-    h2{font-size:46px;margin:0 0 18px 0;font-weight:900}
-    p.lead{color:var(--muted);font-size:18px;line-height:1.6;margin:20px 0 28px}
 
-    .cta{display:flex;gap:12px;justify-content:center}
-    .btn{padding:12px 18px;border-radius:8px;border:0;font-weight:700;cursor:pointer}
-    .btn-primary{background:var(--maroon);color:var(--white);box-shadow:0 6px 18px rgba(62,15,22,0.45)}
-    .btn-ghost{background:rgba(255,255,255,0.95);color:#222}
+        @keyframes zoomBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
 
-    footer{padding:28px;text-align:center;color:rgba(255,255,255,0.6);font-size:14px}
+        /* Overlay moderne avec gradient */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.85) 50%, rgba(0, 20, 100, 0.4) 100%);
+            z-index: -1;
+        }
 
-    @media (max-width:900px){h1{font-size:44px}h2{font-size:30px}}
-    @media (max-width:520px){.nav{padding:0 12px}.nav .links{display:none}h1{font-size:34px}}
-  </style>
+        /* Navigation glassmorphism */
+        nav {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 1000;
+            background: linear-gradient(135deg, #ff3b3b, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 1000px;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(255, 59, 59, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff3b3b, #ff6b6b);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero ultra moderne */
+        .hero {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            overflow: hidden;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: scale(1.2) translateY(0px); }
+            50% { transform: scale(1.2) translateY(-20px); }
+        }
+
+.hero h1, .hero p {
+    display: none;  /* laisse h1 et p cachés si tu veux */
+}
+
+.hero-buttons {
+    display: flex;
+    position: absolute;
+    top: 106%;           /* position verticale avec pourcentage */
+    left: 50%;          /* centre horizontal */
+    transform: translate(-50%, -50%); /* vrai centrage */
+    z-index: 10;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 59, 59, 0.15), transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #ff3b3b 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #ff3b3b, #cc0000);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 59, 59, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 59, 59, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #0066cc, #004999);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.6);
+        }
+
+        /* Services grid moderne */
+        .services {
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-subtitle {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 59, 59, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 59, 59, 0.3);
+        }
+
+        .service-card h3 {
+            color: #ff3b3b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Section expérience */
+        .experience {
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.1), rgba(0, 20, 100, 0.1));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .experience h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Section pourquoi */
+        .why-us {
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .why-us h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .why-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .why-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .why-item:hover {
+            background: rgba(255, 59, 59, 0.1);
+            border-color: rgba(255, 59, 59, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .why-item::before {
+            content: '✓';
+            font-size: 2rem;
+            color: #ff3b3b;
+            margin-right: 1rem;
+        }
+
+        /* Contact moderne */
+        .contact {
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+            background: linear-gradient(135deg, rgba(0, 20, 100, 0.1), rgba(255, 59, 59, 0.1));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff3b3b;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(255, 59, 59, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer moderne */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 59, 59, 0.2);
+            border-color: #ff3b3b;
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Règlement section */
+        .reglement {
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+            min-height: 100vh;
+        }
+
+        .reglement h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reglement-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #ff3b3b, #cc0000);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(255, 59, 59, 0.4);
+        }
+
+        .rules-content {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .rule-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 59, 59, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 59, 59, 0.3);
+        }
+
+        .rule-number {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff3b3b, #cc0000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 59, 59, 0.5);
+        }
+
+        .rule-card h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .rule-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .services h2, .experience h2, .why-us h2, .contact h2 {
+                font-size: 2.5rem;
+            }
+
+            .why-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Inter', sans-serif; color:#fff; background:#000; overflow-x:hidden; }
+
+    /* Navigation */
+    nav { background: rgba(10,10,20,0.7); backdrop-filter: blur(20px); padding:1rem 2rem; position: sticky; top:0; z-index:1000; }
+    .nav-container { max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    .logo { font-size:1.8rem; font-weight:900; display:flex; align-items:center; gap:1rem; }
+    .logo img { height:50px; width:auto; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color: rgba(255,255,255,0.9); text-decoration:none; font-weight:500; cursor:pointer; }
+    .nav-links a:hover { color:#fff; }
+
+    /* Pages */
+    .page { display:none; min-height:100vh; padding:2rem; }
+    .page.active { display:block; }
+
+    /* Hero */
+    .hero { text-align:center; padding:2rem; }
+    .hero-logo { width:2000px; height:auto; margin-bottom:1rem; }
+
+    /* Buttons */
+    .btn { padding:1rem 2rem; border:none; border-radius:50px; background:linear-gradient(135deg,#ff3b3b,#cc0000); color:#fff; cursor:pointer; margin:0.5rem; }
+
+    /* Règlement */
+    .reglement { padding:2rem; }
+    .reglement-categories { display:flex; justify-content:center; gap:1rem; margin-bottom:2rem; }
+    .category-btn { padding:0.8rem 2rem; border-radius:50px; border:1px solid rgba(255,255,255,0.3); cursor:pointer; background:rgba(255,255,255,0.05); color:#fff; font-weight:600; }
+    .category-btn.active { background:linear-gradient(135deg,#ff3b3b,#cc0000); color:#fff; border:none; }
+    .rules-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+    .rule-card { background: rgba(255,255,255,0.05); padding:1.5rem; border-radius:20px; border:1px solid rgba(255,255,255,0.1); position:relative; }
+    .rule-number { position:absolute; top:-20px; left:20px; width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#ff3b3b,#cc0000); display:flex; justify-content:center; align-items:center; font-weight:900; }
+    .rule-card h3 { margin-bottom:0.5rem; color:#fff; }
+    .rule-card p { color: rgba(255,255,255,0.8); }
+
+.btn-container {
+    position: relative;
+    width: 100%; /* le conteneur prend toute la largeur */
+    height: 200px; /* hauteur du conteneur, adapte selon besoin */
+}
+
+.btn-discord {
+    position: absolute;
+    top: -55%;        /* 50% du conteneur depuis le haut */
+    left: 70%;       /* 50% du conteneur depuis la gauche */
+    transform: translate(-50%, -50%); /* ajuste pour centrer exactement */
+    padding: 1rem 2rem;
+    background: #5865F2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-discord:hover {
+    background: #4752c4;
+    transform: translate(-50%, -50%) translateY(-2px);
+    box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
+}
+
+    </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="brand">
-      <img src="logo.png" alt="logo" />
-      <div>URGENCE 13</div>
-    </div>
-    <nav class="links">
-      <a href="#">Accueil</a>
-      <a href="#">Règlement</a>
-      <a href="#">FAQ</a>
-      <a href="#">Actualités</a>
-      <a href="#">L'équipe</a>
-      <a href="#">Partenaires</a>
-    </nav>
-  </header>
-
-  <main class="hero">
-    <div class="hero-bg"></div>
+    <div class="bg-image"></div>
     <div class="overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://i.goopics.net/roiscd.png" alt="URGENCE 13 RP">
+                <span>URGENCE 13 RP</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('accueil')">Accueil</a></li>
+                <li><a href="#" onclick="showPage('reglement')">Règlement</a></li>
+                <li><a href="#" onclick="showPage('faq')">FAQ</a></li>
+                <li><a href="#" onclick="showPage('actualites')">Actualités</a></li>
+                <li><a href="#" onclick="showPage('equipe')">L'équipe</a></li>
+                <li><a href="#" onclick="showPage('partenaires')">Partenaires</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-      <h1>Bienvenue sur</h1>
-      <h2>URGENCE 13 RP</h2>
-      <p class="lead">Plongez dans le département des bouches du rhones : opérateurs, pompiers, SAMU, forces de l'ordre.</p>
-      <div class="cta">
-        <button class="btn btn-primary" onclick="alert('Découvrir le serveur')">Découvrir le serveur</button>
-        <button class="btn btn-ghost" onclick="window.open('https://discord.gg/VbjCQT3p9T','_blank')">Discord</button>
+        <!-- Page Accueil -->
+        <div id="page-accueil" class="page active">
+            <section class="hero">
+                <img src="https://i.goopics.net/roiscd.png" alt="URGENCE 13 RP" class="hero-logo">
+                <h1>Bienvenue sur<br>URGENCE 13 RP</h1>
+                <p>Pour une simulation réaliste des services de secours : opérateurs, pompiers, SAMU, forces de l'ordre.</p>
+            </section>
+
+<div class="hero-buttons">
+    <a href="https://cfx.re/join/y5bpvm" target="_blank" class="btn">
+        Découvrir le serveur
+    </a>
+</div>
+
+            <!-- Bouton Discord -->
+<div class="btn-container">
+    <a href="https://discord.gg/p4D52nS327" target="_blank" class="btn btn-discord">
+        Rejoindre Discord
+    </a>
+</div>
+            <section class="services">
+                <h2>Nos Services</h2>
+                <p class="services-subtitle">Voici les différents corps que vous pouvez intégrer :</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>🚔 Gendarmerie Nationale</h3>
+                        <p>Maintenez l'ordre et la sécurité sur le territoire.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>👮 Police Nationale</h3>
+                        <p>Maintenez l'ordre et la sécurité.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🚒 Bataillon des Marins Pompiers de Marseille</h3>
+                        <p>Intervention incendie et secours d'urgence.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🚒 Sapeurs Pompiers Des Bouches Du Rhones</h3>
+                        <p>Intervention incendie et secours d'urgence.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🚑 SAMU</h3>
+                        <p>Interventions médicales, réanimations : devenez un acteur essentiel de la chaîne de secours.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>📦 DIR XPO LOGISTIQUES</h3>
+                        <p>Gestion logistique et support opérationnel.</p>
+                    </div>
+                </div>
+            </section>
+
+<section class="services">
+    <h2>Technologies utilisées</h2>
+    <p class="services-subtitle">Voici les technologies et plateformes utilisées sur URGENCE 13 RP :</p>
+    <div class="services-grid">
+        <!-- Drania -->
+        <div class="service-card">
+            <img src="https://i.goopics.net/jt5y8v.png" alt="Drania" class="tech-image">
+        </div>
+        <!-- Fivem -->
+        <div class="service-card">
+            <img src="https://i.goopics.net/kqn18u.png" alt="Fivem" class="tech-image">
+        </div>
+        <!-- Discord -->
+        <div class="service-card">
+            <img src="https://i.goopics.net/gpydn1.png" alt="Discord" class="tech-image">
+        </div>
+    </div>
+</section>
+
+            <section class="why-us">
+                <h2>Pourquoi URGENCE 13 RP ?</h2>
+                <div class="why-list">
+                    <div class="why-item">Simulation ultra-réaliste</div>
+                    <div class="why-item">Communauté active et bienveillante</div>
+                    <div class="why-item">Formations professionnelles</div>
+                    <div class="why-item">Scénarios immersifs</div>
+                    <div class="why-item">Équipements authentiques</div>
+                    <div class="why-item">Serveur optimisé et stable</div>
+                </div>
+            </section>
+
+            <section class="contact">
+                <h2>Contactez-nous</h2>
+                <p class="contact-subtitle">Une question ? N'hésitez pas à nous contacter via ticket Discord.</p>
+            </section>
+        </div>
+
+<div id="page-reglement" class="page">
+    <section class="reglement">
+        <h2>Règlement</h2>
+        <div class="reglement-categories">
+            <div class="category-btn active" onclick="showCategory('generales')">Règles Générales</div>
+            <div class="category-btn" onclick="showCategory('rp')">Règles RP</div>
+        </div>
+
+        <div id="generales" class="rules-content">
+            <div class="rules-grid">
+                <div class="rule-card"><div class="rule-number">1</div><h3>Respect</h3><p>Comportement & Respect Respectez tous les membres de la communauté. Aucun comportement toxique, discriminatoire ou offensant ne sera toléré.</p></div>
+                <div class="rule-card"><div class="rule-number">2</div><h3>Communication</h3><p>Communication Utilisez les canaux appropriés pour chaque type de discussion. Restez courtois dans vos échanges..</p></div>
+                <div class="rule-card"><div class="rule-number">3</div><h3>Respect</h3><p>Vocaux Gardez un volume raisonnable. Pas de spam sonore ou de musique sans autorisation.</p></div>
+                <div class="rule-card"><div class="rule-number">4</div><h3>Communication</h3><p>Staff & Sanctions Respectez les décisions du staff. Les sanctions sont proportionnelles aux infractions commises.</p></div>
+            </div>
+        </div>
+
+        <div id="rp" class="rules-content" style="display:none;">
+            <div class="rules-grid">
+                <div class="rule-card"><div class="rule-number">1</div><h3>Participation</h3><p>Participation & Présence Soyez actifs et responsables : participez aux sessions régulièrement, signalez vos absences, retards ou départs, et respectez les consignes de vos responsables de pôle..</p></div>
+                <div class="rule-card"><div class="rule-number">2</div><h3>Immersion</h3><p>Comportement en RP Différenciez RP et HRP, respectez les autres joueurs et les responsables de pôle, et maintenez une bonne ambiance en jeu.</p></div>
+                <div class="rule-card"><div class="rule-number">3</div><h3>Participation</h3><p>Jeu & Simulation RP réaliste et cohérent, respect des protocoles, utilisation correcte des véhicules et des services publics.</p></div>
+                <div class="rule-card"><div class="rule-number">4</div><h3>Immersion</h3><p>Sanctions RP Toute infraction RP entraîne une sanction proportionnelle à la gravité, décidée par le staff et la direction.</p></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- PAGE FAQ -->
+<div id="page-faq" class="page">
+    <h2>FAQ</h2>
+    <div id="faq-container">
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Comment rejoindre le serveur ?
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">Clique sur "Découvrir le serveur".</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Quel rôle peuvent avoir les civils ?
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                Les civils peuvent générer des scénarios (accidents, altercations…) qui alimentent le RP des services d’urgence.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Si je n'ai pas le jeu, puis-je jouer ?
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">Oui ! Tu peux devenir opérateur sans jeu et rejoindre les services d’urgence après ton recrutement.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Quand puis-je jouer ?
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">Les sessions supervisées ont lieu certains soirs, mais le serveur reste accessible pour entraînements libres.</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// Menu déroulant FAQ
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const answer = q.nextElementSibling;
+            const arrow = q.querySelector('.arrow');
+            const isOpen = answer.style.display === 'block';
+
+            // fermer toutes les réponses
+            document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+            document.querySelectorAll('.arrow').forEach(ar => ar.style.transform = 'rotate(0deg)');
+
+            // ouvrir la réponse cliquée
+            if (!isOpen) {
+                answer.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+});
+</script>
+
+<style>
+.faq-item { border:1px solid #d1b0a0; border-radius:12px; margin-bottom:16px; overflow:hidden; background:#fff; }
+.faq-question { width:100%; padding:16px; text-align:left; font-weight:600; font-size:16px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; background:#fffbe6; border:none; color:#8B0000; }
+.faq-answer { display:none; padding:16px; font-size:14px; line-height:1.6; background:#fff; color:#333; }
+.arrow { transition: transform 0.3s; font-size:20px; color:#8B0000; }
+</style>
+
+
+<div id="page-actualites" class="page">
+  <section class="actualites">
+    <h2>Actualités URGENCE 13 RP</h2>
+    <p class="services-subtitle">Toutes les dernières nouvelles et événements du serveur</p>
+
+    <div class="actualites-grid">
+      <div class="actualite-card">
+        <img src="https://i.goopics.net/8dtld2.png" alt="AU COUCHER DE SOLEIL" class="actualite-image" onclick="zoomImage(this)">
+        <h3>AU COUCHER DE SOLEIL</h3>
+        <p>Profitez d'une soirée magique avec notre serveur et nos événements RP uniques.</p>
+      </div>
+
+      <div class="actualite-card">
+        <img src="https://i.goopics.net/roiscd.png" alt="CREATION DU SITE WEB" class="actualite-image" onclick="zoomImage(this)">
+        <h3>CREATION DU SITE WEB</h3>
+        <p>LE SITE WEB VIEN ENFIN D'ARRIVER.</p>
       </div>
     </div>
-  </main>
+  </section>
+</div>
 
-  <footer>
-    © <span id="year"></span> URGENCE 13 RP — Tous droits réservés
-  </footer>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="">
+</div>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+<style>
+.actualites { padding: 5rem 2rem; margin: 4rem 0; }
+.actualites h2 {
+  text-align: center; font-size: 3rem; margin-bottom: 1rem; font-weight: 900;
+  background: linear-gradient(135deg, #fff, #ff3b3b);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.services-subtitle { text-align: center; margin-bottom: 4rem; font-size: 1.2rem; color: rgba(255,255,255,0.7); }
+.actualites-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.actualite-card {
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+  padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+  text-align: center; transition: all 0.4s ease; position: relative;
+}
+.actualite-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(255,59,59,0.5); box-shadow: 0 20px 60px rgba(255,59,59,0.3); }
+
+.actualite-image {
+  width: 100%; max-width: 250px; height: auto; margin: 0 auto 1.5rem auto;
+  display: block; border-radius: 15px; cursor: pointer; transition: transform 0.3s ease;
+}
+.actualite-image:hover { transform: scale(1.05); }
+
+.actualite-card h3 { color: #ff3b3b; font-size: 1.5rem; margin-bottom: 1rem; }
+.actualite-card p { color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+/* Lightbox */
+#lightbox {
+  display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1000;
+}
+#lightbox img {
+  max-width: 90%; max-height: 90%; border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255,59,59,0.5);
+}
+</style>
+
+<script>
+function zoomImage(img) {
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+</script>
+
+
+<div id="page-equipe" class="page">
+<section class="equipe">
+    <h2>L'équipe URGENCE 13 RP</h2>
+    <p class="services-subtitle">Découvrez les différentes catégories qui gèrent et animent le serveur</p>
+
+    <div class="equipe-grid">
+
+        <!-- Direction -->
+        <div class="equipe-card">
+            <h3>DIRECTION</h3>
+            <p class="equipe-desc">Pilotage stratégique du serveur, définition des orientations et supervision globale.</p>
+
+            <div class="team-members">
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="QUENTIN Fondateur">
+                    <h4>QUENTIN</h4>
+                    <p>Fondateur</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="ALEX Co-Fondateur">
+                    <h4>ALEX</h4>
+                    <p>Co-Fondateur</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="SOFIANE Co-Fondateur">
+                    <h4>SOFIANE</h4>
+                    <p>Co-Fondateur</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Développement -->
+        <div class="equipe-card">
+            <h3>DÉVELOPPEMENT</h3>
+            <p class="equipe-desc">Équipe technique, création et maintenance des outils et scripts pour le serveur.</p>
+
+            <div class="team-members">
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="HUGO Développeur">
+                    <h4>HUGO</h4>
+                    <p>Développeur</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="ANTHONY Développeur">
+                    <h4>ANTHONY</h4>
+                    <p>Développeur</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff -->
+        <div class="equipe-card">
+            <h3>STAFF</h3>
+            <p class="equipe-desc">Modération et assistance pour assurer la meilleure expérience en RP.</p>
+            <div class="team-members">
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="JEREMEY ADMINISTRATEUR">
+                    <h4>JEREMEY</h4>
+                    <p>ADMINISTRATEUR</p>
+                </div>
+
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="SOFIANE Staff">
+                    <h4>SOFIANE</h4>
+                    <p>ADMINISTRATEUR</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="MATHIS ADMINISTRATEUR">
+                    <h4>MATHIS</h4>
+                    <p>ADMINISTRATEUR</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="ILAN ADMINISTRATEUR">
+                    <h4>TOM</h4>
+                    <p>ADMINISTRATEUR</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="ILAN ADMINISTRATEUR">
+                    <h4>KHALIL</h4>
+                    <p>ANIMATEUR</p>
+                </div>
+            </div>
+        </div>
+        <div class="equipe-card">
+            <h3>ANIMATEUR</h3>
+            <p class="equipe-desc">Animateur d’urgence – 13 RP FIEM
+Réactif et organisé, il coordonne les interventions d’urgence et assure la liaison entre les équipes pour garantir la sécurité et l’efficacité des opérations.</p>
+                <div class="member-card">
+                    <img src="https://i.goopics.net/roiscd.png" alt="ILAN ADMINISTRATEUR">
+                    <h4>KHALIL</h4>
+                    <p>ANIMATEUR</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<style>
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.member-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,59,59,0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 0.5rem;
+    text-align: center;
+    flex: 1 1 100px;
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(255,59,59,0.5);
+    box-shadow: 0 10px 30px rgba(255,59,59,0.3);
+}
+
+.member-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+.member-card h4 {
+    color: #ff3b3b;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.member-card p {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+}
+</style>
+
+<div id="page-partenaires" class="page">
+    <section class="partenaires">
+        <h2>Nos Partenaires</h2>
+        <p class="services-subtitle">Découvrez les différents partenaires qui soutiennent URGENCE 13 RP</p>
+
+        <div class="partenaires-grid">
+            <!-- Partenaire 1 -->
+            <div class="partenaire-card">
+                <img src="https://i.goopics.net/55k6dm.png" alt="AnthonyModding Logo" class="partenaire-image">
+                <h3>『⚡』・anthony-modding</h3>
+                <p><strong>Tu cherches un endroit fiable, rapide et sécurisé pour acheter, vendre ou échanger du moddé GTA 5 ?</strong></p>
+                <p>Ne cherche plus : AnthonyModding débarque fort !</p>
+                <blockquote>
+                    ⚡ Livraisons rapides<br>
+                    📦 Services personnalisés selon ta demande<br>
+                    👥 Communauté sérieuse et respectueuse
+                </blockquote>
+                <p>👉 Rejoins-nous maintenant : 
+                    <a href="https://discord.gg/yzKcSbjKYx" target="_blank" rel="noopener noreferrer">Discord AnthonyModding</a>
+                </p>
+                <p>🚀 AnthonyModding – la qualité avant tout.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.partenaires {
+    padding: 5rem 2rem;
+    margin: 4rem 0;
+}
+
+.partenaires h2 {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff, #ff3b3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.services-subtitle {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.partenaires-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.partenaire-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.partenaire-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255, 59, 59, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+    border-radius: 20px;
+}
+
+.partenaire-card:hover::before {
+    opacity: 1;
+}
+
+.partenaire-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 59, 59, 0.5);
+    box-shadow: 0 20px 60px rgba(255, 59, 59, 0.3);
+}
+
+.partenaire-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.partenaire-card h3 {
+    color: #ff3b3b;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.partenaire-card p {
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+</style>
+
+
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+
+    <!-- Liens sociaux -->
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <a href="https://discord.com/invite/p4D52nS327" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; text-decoration: none; color: #fff;">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em" width="1em"><path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"></path></svg>
+            Discord
+        </a>
+
+        <a href="https://www.tiktok.com/@urgence13.officiel" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; text-decoration: none; color: #fff;">
+            TikTok
+        </a>
+
+        <a href="x" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; text-decoration: none; color: #fff;">
+            Instagram
+        </a>
+
+        <a href="X" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; text-decoration: none; color: #fff;">
+            YouTube
+        </a>
+    </div>
+</div>
+
+
+
+<script>
+    // Changer de page
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById('page-' + pageId);
+    if(page) page.classList.add('active');
+}
+
+
+    // Changer de catégorie dans le règlement
+function showCategory(cat) {
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.rules-content').forEach(r => r.style.display = 'none');
+
+    document.querySelector('.category-btn[onclick*="' + cat + '"]').classList.add('active');
+    document.getElementById(cat).style.display = 'block';
+}
+
+</script>
 </body>
 </html>
